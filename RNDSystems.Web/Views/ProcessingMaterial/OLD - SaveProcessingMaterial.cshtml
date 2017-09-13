@@ -1,0 +1,562 @@
+﻿@model RNDSystems.Models.RNDProcessing
+
+@{
+    ViewBag.Title = "SaveProcessingMaterial";
+}
+
+<div class="panel-heading">Processing Material</div>
+<div class="panel-body">
+    <div class="container">
+        <div class="row" style="height:10px">
+        </div>
+        <div class="row">
+            <div class="col-md-3 pull-right">
+                <button id="btnBack" onclick="window.history.back();" class="btn btn-primary btn-large"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
+            </div>
+        </div>
+        @using (Html.BeginForm("SaveProcessingMaterial", "ProcessingMaterial", FormMethod.Post, new { id = "SaveProcessingMaterial" }))
+        {
+            <input type="hidden" name="WorkStudyID" id="WorkStudyID" value="@Model.WorkStudyID" />
+            <input type="hidden" name="RecId" id="RecId" value="@Model.RecID" />
+            <input type="hidden" name="IsCopy" id="IsCopy" value="@Model.IsCopy" />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="SolutionHeatTreat" class="cols-sm-2 control-label">Solution Heat Treat</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblSHTTemp" class="cols-sm-2 control-label">SHT Temp(F)</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.SHTTemp" id="SHTTemp" name="SHTTemp" class="form-control" placeholder="Enter SHT Temp(F)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblMillLotNo" class="cols-sm-2 control-label">Mill Lot No</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.MillLotNo" id="MillLotNo" name="MillLotNo" class="form-control" placeholder="Enter Mill Lot No" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblSonum" class="cols-sm-2 control-label">Sonum</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.Sonum" id="Sonum" name="Sonum" class="form-control" placeholder="Enter Sonum" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="SHTSoakTime " class="cols-sm-2 control-label">SH Soak Time </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblSHSoakHrs  " class="cols-sm-2 control-label">SH Soak Hrs </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.SHSoakHrs" id="SHTTemp" name="SHSoakHrs" class="form-control" placeholder="Enter No of Hours" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblSHSoakMns" class="cols-sm-2 control-label">SH Soak Mins </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.SHSoakMns" id="SHSoakMns" name="SHSoakMns" class="form-control" placeholder="Enter No of Mins" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblProcessNo" class="cols-sm-2 control-label">Process No</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.ProcessNo" id="ProcessNo" name="ProcessNo" class="form-control" placeholder="Enter Process No" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblSHTStartTime" class="cols-sm-2 control-label">SHT Start Time </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">                    
+                        <div class="form-group">
+                            <label for="lblSHTStartHrs" class="cols-sm-2 control-label">SHT Start Hrs</label>
+                            <div class="cols-sm-10">
+                                @Html.DropDownList("SHTStartHrs", ViewBag.ddSHTStartHours as IEnumerable<SelectListItem>, new { @class = "show-tick" })
+                            </div>
+                        </div>                    
+                    @*<div class="form-group">
+                        <label for="lblSHTStartHrs  " class="cols-sm-2 control-label">SHT Start Hrs </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.SHTStartHrs" id="SHTStartHrs" name="SHTStartHrs" class="form-control" placeholder="Enter Hours" />
+                                
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblSHTStartMns" class="cols-sm-2 control-label">SHT Start Mins </label>
+                        <div class="cols-sm-10">
+                            @Html.DropDownList("SHTStartMns", ViewBag.ddSHTStartMinutes as IEnumerable<SelectListItem>, new { @class = "show-tick" })
+                            @*<div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.SHTStartMns" id="SHTStartMns" name="SHTStartMns" class="form-control" placeholder="Enter Mins" />
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblProcessID" class="cols-sm-2 control-label">Process Id</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.ProcessID" id="ProcessID" name="ProcessID" class="form-control" placeholder="Enter Process No" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblSHTDate" class="cols-sm-2 control-label">SHT Date</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group date">
+                                <input type="text" id="SHTDate" value="@Model.SHTDate" name="SHTDate" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblAgeLotNo" class="cols-sm-2 control-label">Age Lot No</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.AgeLotNo" id="AgeLotNo" name="AgeLotNo" class="form-control" placeholder="Enter Age Lot No" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblHole" class="cols-sm-2 control-label">Hole</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.Hole" id="Hole" name="Hole" class="form-control" placeholder="Enter Hole" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label for="lblStretch" class="cols-sm-2 control-label">Stretch</label>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblStretchPct" class="cols-sm-2 control-label">% Stretch Temperature</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.StretchPct" id="StretchPct" name="StretchPct" class="form-control" placeholder="Enter % Stretch Temp.(F)(in/in)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblPieceNo" class="cols-sm-2 control-label">Piece No</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.PieceNo" id="PieceNo" name="PieceNo" class="form-control" placeholder="Enter PieceNo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblHTLogNo" class="cols-sm-2 control-label">HT Log No</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.HTLogNo" id="HTLogNo" name="HTLogNo" class="form-control" placeholder="Enter HTLogNo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblSDTHrs" class="cols-sm-2 control-label">Time After SHT </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblSHSoakHrs  " class="cols-sm-2 control-label">Time After SHT Hrs </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.AfterSHTHrs" id="AfterSHTHrs" name="AfterSHTHrs" class="form-control" placeholder="Enter No of Hours" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblAfterSHTMns" class="cols-sm-2 control-label">Time After SHT Mins </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.AfterSHTMns" id="AfterSHTMns" name="AfterSHTMns" class="form-control" placeholder="Enter No of Mins" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblHTLogID" class="cols-sm-2 control-label">HT Log ID</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.HTLogID" id="HTLogID" name="HTLogID" class="form-control" placeholder="Enter HTLogID" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblNaturalAge" class="cols-sm-2 control-label">Natural Age </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblNatAgingHrs  " class="cols-sm-2 control-label">Natural Age Hrs </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.NatAgingHrs" id="NatAgingHrs" name="NatAgingHrs" class="form-control" placeholder="Enter Hours" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblNatAgingMns" class="cols-sm-2 control-label">Natural Age Mins </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.NatAgingMns" id="NatAgingMns" name="NatAgingMns" class="form-control" placeholder="Enter Mins" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblAgeLotID" class="cols-sm-2 control-label">Age Lot ID </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.AgeLotID" id="AgeLotID" name="AgeLotID" class="form-control" placeholder="Enter AgeLotID" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblAgeStartTime" class="cols-sm-2 control-label">Artificial Age</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblArtStartHrs" class="cols-sm-2 control-label">Artificial Age Hrs </label>
+                        <div class="cols-sm-10">
+                            @Html.DropDownList("ArtStartHrs", ViewBag.ddArtStartHours as IEnumerable<SelectListItem>, new { @class = "show-tick" })
+                        </div>
+                    </div> 
+                    @*<div class="form-group">
+                        <label for="lblArtStartHrs  " class="cols-sm-2 control-label">Artificial Age Hrs </label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.ArtStartHrs" id="ArtStartHrs" name="ArtStartHrs" class="form-control" placeholder="Enter Hours" />
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblArtStartMns" class="cols-sm-2 control-label">Artificial Age Mins </label>
+                        <div class="cols-sm-10">
+                            @Html.DropDownList("ArtStartMns", ViewBag.ddArtStartMinutes as IEnumerable<SelectListItem>, new { @class = "show-tick" })
+                            @*<div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                <input type="text" value="@Model.ArtStartMns" id="ArtStartMns" name="ArtStartMns" class="form-control" placeholder="Enter Mins" />
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblArtAgeDate" class="cols-sm-2 control-label">Artificial Age Date</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group date">
+                                <input type="text" id="ArtAgeDate" value="@Model.ArtAgeDate" name="ArtAgeDate" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="lblAgeTime1 " class="cols-sm-2 control-label">Age Time 1 </label>
+                    </div>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblArtAgeTemp1" class="cols-sm-2 control-label">Age Temperature 1(F)</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.ArtAgeTemp1" id="ArtAgeTemp1" name="ArtAgeTemp1" class="form-control" placeholder="Enter Age Temp1(F)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblArtAgeHrs1" class="cols-sm-2 control-label">Age Hrs 1 </label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.ArtAgeHrs1" id="ArtAgeHrs1" name="ArtAgeHrs1" class="form-control" placeholder="Enter No of Hours" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblArtAgeMns1" class="cols-sm-2 control-label">Age Mins 1</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.ArtAgeMns1" id="ArtAgeMns1" name="ArtAgeMns1" class="form-control" placeholder="Enter No of Mins" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblAgeTime2" class="cols-sm-2 control-label">Age Time 2 </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblArtAgeTemp2" class="cols-sm-2 control-label">Age Temperature 2(F)</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.ArtAgeTemp2" id="ArtAgeTemp2" name="ArtAgeTemp2" class="form-control" placeholder="Enter Age Temp2(F)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblArtAgeHrs2" class="cols-sm-2 control-label">Age Hrs 2 </label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.ArtAgeHrs2" id="ArtAgeHrs2" name="ArtAgeHrs2" class="form-control" placeholder="Enter No of Hours" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblArtAgeMns2" class="cols-sm-2 control-label">Age Mns 2</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.ArtAgeMns2" id="ArtAgeMns2" name="ArtAgeMns2" class="form-control" placeholder="Enter No of Minutes" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblAgeTime3" class="cols-sm-2 control-label">Age Time 3 </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblArtAgeTemp3" class="cols-sm-2 control-label">Age Temperature 3(F)</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.ArtAgeTemp3" id="ArtAgeTemp3" name="ArtAgeTemp3" class="form-control" placeholder="Enter Age Temp3(F)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblArtAgeHrs3" class="cols-sm-2 control-label">Age Hrs 3</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.ArtAgeHrs3" id="ArtAgeHrs3" name="ArtAgeHrs3" class="form-control" placeholder="Enter No of Hrs" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblArtAgeMns3" class="cols-sm-2 control-label">Age Mins 3</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.ArtAgeMns3" id="ArtAgeMns3" name="ArtAgeMns3" class="form-control" placeholder="Enter No of Mins" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblTargetCount" class="cols-sm-2 control-label">Target Counts</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.TargetCount" id="TargetCount" name="TargetCount" class="form-control" placeholder="Enter Target Counts" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblFinalTemper" class="cols-sm-2 control-label">Final Temper</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.FinalTemper" id="FinalTemper" name="FinalTemper" class="form-control" placeholder="Enter Final Temper" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblActualCount" class="cols-sm-2 control-label">Actual Counts</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.ActualCount" id="ActualCount" name="ActualCount" class="form-control" placeholder="Enter Actual Counts" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="lblRCS" class="cols-sm-2 control-label">RCS</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-text-width" aria-hidden="true"></i></span>
+                                    <input type="text" value="@Model.RCS" id="RCS" name="RCS" class="form-control" placeholder="Enter RCS" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <button id="btnBack" onclick="window.history.back();" class="btn btn-danger btn-large"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+                            <button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                            <button type="submit" @(@Model.RecID <= 0 ? "disabled='disabled'" : "" ) id="btnCopy" name="btnCopy" class="btn btn-warning" onclick="javascript: CopyAssignMaterial();"><i class="fa fa-clipboard" aria-hidden="true"></i>Make Copy</button>
+                        </div>
+                    </div>
+                </div>
+        }
+    </div>
+</div>
+    @section scripts{
+        @Scripts.Render("~/bundles/SaveProcessingMaterial")
+
+        <script>
+            function CopyAssignMaterial() {
+                $("#IsCopy").val('true');
+            }
+        </script>
+
+    }
